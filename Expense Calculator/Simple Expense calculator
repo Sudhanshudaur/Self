@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int MAX = 50;         // Maximum number of expenses
+    char items[MAX][50];        // Array to store expense items (using char array instead of string)
+    int amounts[MAX];         // Array to store expense amounts
+    int total = 0;            // To store total expenses
+    int count = 0;              // To keep track of number of expenses
+    int choice;
+
+    cout << "Expense Calculator\n";
+
+    do {
+        cout << "\n1. Add Expense";
+        cout << "\n2. Show All Expenses";
+        cout << "\n3. Exit";
+        cout << "\nEnter your choice (1-3): ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                if(count < MAX) {
+                    cout << "\nEnter expense item (single word): ";
+                    cin >> items[count];
+                    
+                    cout << "Enter amount: ₹";
+                    cin >> amounts[count];
+                    
+                    total += amounts[count];
+                    count++;
+                    
+                    cout << "Expense added successfully!\n";
+                } else {
+                    cout << "Maximum expense limit reached!\n";
+                }
+                break;
+
+            case 2:
+                if(count == 0) {
+                    cout << "\nNo expenses recorded yet!\n";
+                } else {
+                    cout << "\nYour Expenses:\n";
+                    cout << "Item\t\tAmount\n";
+                    cout << "------------------------\n";
+                    
+                    for(int i = 0; i < count; i++) {
+                        cout << items[i] << "\t\t₹" << amounts[i] << "\n";
+                    }
+                    
+                    cout << "------------------------\n";
+                    cout << "Total Expenses: ₹" << total << "\n";
+                }
+                break;
+
+            case 3:
+                cout << "\nThank you for using the calculator!\n";
+                break;
+
+            default:
+                cout << "\nInvalid choice! Please try again.\n";
+        }
+    } while(choice != 3);
+
+    return 0;
+}
