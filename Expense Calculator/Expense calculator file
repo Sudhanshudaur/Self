@@ -76,11 +76,11 @@ public:
         for (int i = 0; i < expenseCount; i++) {
             cout << expenses[i].getDescription() << "\t";
             cout << expenses[i].getCategory() << "\t";
-            cout << "$" << expenses[i].getAmount() << "\n";
+            cout << "₹" << expenses[i].getAmount() << "\n";
         }
 
         cout << "----------------------------------------\n";
-        cout << "Total Expenses: $" << totalAmount << "\n";
+        cout << "Total Expenses: ₹" << totalAmount << "\n";
     }
 };
 
