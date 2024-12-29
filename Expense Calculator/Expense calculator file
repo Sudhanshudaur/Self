@@ -1,0 +1,116 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX_EXPENSES = 100;  // Maximum number of expenses that can be stored
+
+class Expense {
+    string description;
+    double amount;
+    string category;
+
+public:
+    Expense() {
+        description = "";
+        amount = 0.0;
+        category = "";
+    }
+
+    void setExpense(string desc, double amt, string cat) {
+        description = desc;
+        amount = amt;
+        category = cat;
+    }
+
+    string getDescription() { return description; }
+    double getAmount() { return amount; }
+    string getCategory() { return category; }
+};
+
+class ExpenseTracker {
+    Expense expenses[MAX_EXPENSES];
+    int expenseCount;
+    double totalAmount;
+
+public:
+    ExpenseTracker() {
+        expenseCount = 0;
+        totalAmount = 0;
+    }
+
+    void addExpense() {
+        if (expenseCount >= MAX_EXPENSES) {
+            cout << "\nMaximum expense limit reached!\n";
+            return;
+        }
+
+        string description, category;
+        double amount;
+
+        cout << "\nEnter expense description: ";
+        cin.ignore();
+        getline(cin, description);
+
+        cout << "Enter amount spent: ";
+        cin >> amount;
+
+        cout << "Enter category (e.g., Food, Transport, Bills): ";
+        cin.ignore();
+        getline(cin, category);
+
+        expenses[expenseCount].setExpense(description, amount, category);
+        totalAmount += amount;
+        expenseCount++;
+    }
+
+    void displayExpenses() {
+        if (expenseCount == 0) {
+            cout << "\nNo expenses recorded yet!\n";
+            return;
+        }
+
+        cout << "\n=== Expense Report ===\n";
+        cout << "Description\tCategory\tAmount\n";
+        cout << "----------------------------------------\n";
+
+        for (int i = 0; i < expenseCount; i++) {
+            cout << expenses[i].getDescription() << "\t";
+            cout << expenses[i].getCategory() << "\t";
+            cout << "$" << expenses[i].getAmount() << "\n";
+        }
+
+        cout << "----------------------------------------\n";
+        cout << "Total Expenses: $" << totalAmount << "\n";
+    }
+};
+
+int main() {
+    ExpenseTracker tracker;
+    int choice;
+
+    cout << "=== Monthly Expense Calculator ===\n";
+
+    do {
+        cout << "\n1. Add Expense";
+        cout << "\n2. View Expenses";
+        cout << "\n3. Exit";
+        cout << "\nEnter your choice (1-3): ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                tracker.addExpense();
+                break;
+            case 2:
+                tracker.displayExpenses();
+                break;
+            case 3:
+                cout << "\nThank you for using the Expense Calculator!\n";
+                break;
+            default:
+                cout << "\nInvalid choice! Please try again.\n";
+        }
+    } while (choice != 3);
+
+    return 0;
+}
