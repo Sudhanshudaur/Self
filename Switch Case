@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main() 
+{
     int day;
     cout<<"Enter Day Number : "<<endl;
     cin>>day;
@@ -29,6 +30,6 @@ switch (day) {
     break;
   default: 
     cout<<"Not in range i.e. between 1 to 7";
-}
+   }
     return 0;
 }
