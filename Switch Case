@@ -32,4 +32,4 @@ switch (day) {
     cout<<"Not in range i.e. between 1 to 7";
    }
     return 0;
- }
+}
